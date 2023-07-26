@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.squard {
+  display: inline-block;
+  margin: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 10%;
+  background-color: green;
+  color: white;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: medium;
+  padding: auto;
+  transition-property: border-radius, color, background-color;
+  transition-duration: 0.75s;
+  transition-delay: 0s;
+  transition-timing-function: ease-out;
+}
+
+.squard:hover {
+  background-color: rgb(254, 246, 0);
+  border-radius: 50%;
+  color: black;
+}
+
+.kru {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 50px;
+  padding-top: 35px;
+  background-color: #b22121;
+  animation-name: polo;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes polo {
+  0% {
+    transform: translateX(0px);
+    background-color: greenyellow;
+  }
+  50% {
+    transform: translateX(300px);
+    background-color: red;
+  }
+  100% {
+    transform: translateX(0px);
+    background-color: greenyellow;
+  }
+}
+.pal {
+  height: 2px;
+  background-color: green;
+  animation-name: rassh;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rassh {
+  0% {
+    transform: translateX(0px);
+    width: 0px;
+  }
+  50% {
+    width: 300px;
+    transform: translateX(-300px);
+  }
+  100% {
+    width: 0px;
+    transform: translateX(0px);
+  }
+}/*# sourceMappingURL=index.css.map */
