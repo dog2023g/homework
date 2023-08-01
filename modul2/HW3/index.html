@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>CSS 3</title>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+            <script>
+                function name(a){
+                    if (a<=100000)
+                    {
+                        alert('Ваша чистая зарплата '+(a*0.65))
+                    }
+                    else{
+                        alert('Ваша чистая зарплата '+(a*0.55))
+                    }
+
+                }
+            
+                while (1==1){
+                let a=prompt('Введите вашу зарплату')
+                name((+a))
+                let b=prompt('Хотите расчитать зарплату ещё раз?'+'/n'+'если да, напишите "y", если нет, то напишите "n"')
+                if (b==null || b==='n'){
+                    break
+                }
+                }
+            </script>
+    </body>
+</html>    
