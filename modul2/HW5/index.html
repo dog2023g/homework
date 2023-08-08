@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>CSS 3</title>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+       
+    </head>
+    <body>
+            <script>
+                function add_task(){
+                    var tasks_list=document.getElementsByClassName('current'); // поиск элемента по названию класса и сохранение (тип массив)
+                    console.log(tasks_list.length); //вывод в консоли количества элементов с данным классом
+                    console.log(tasks_list[0]); // вывод в консоли первого элемента с данным классом
+
+                    var tasks_list=document.getElementById('current'); // поиск элемента по ID и сохранение в переменную 
+                    console.log(tasks_list); // вывод элемента в консоли
+
+                    var arr=document.getElementsByTagName('div'); //поиск элемента по тегу и сохранение (тип массив)
+                    console.log(arr.length); // вывод в консоль количества таких элементов
+                    console.log(arr[0]); // вывод в консоль первого элемента с таким тегом
+
+                    var tasks_list=document.getElementsByTagName('ol');  //поиск элемента по тегу и сохранение (тип массив)
+                    console.log(tasks_list.length); // вывод в консоль количества таких элементов
+
+                    var new_task=document.createElement('li'); // в переменную new_task создается элемент li
+                    console.log(new_task); // вывод в консоль этого элемента
+
+                    var tasks_list=document.getElementById('current'); // поиск элемента по ID и сохранение в переменную  
+                    tasks_list.appendChild(new_task); // в переменную tasks_list добавляется потомок, написанный в переменной new_task
+                    console.log(tasks_list); // вывод в консоль этого элемента
+                }
+                function del(){
+                    var tasks_list=document.getElementById('current'); // поиск элемента по ID и сохранение в переменную 
+                    console.log(tasks_list); // вывод элемента в консоли
+                    tasks_list.removeChild(tasks_list.childNodes[0]); //удаление первого потомка из элемента, написанного в tasks_list
+                }
+            </script>
+    </body>
+</html>    
