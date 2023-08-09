@@ -27,7 +27,7 @@
                         break;
                     }
             
-                    a=a.split(" ");
+                    a=a.split(/[ ,]+/);
                     if (a.length==4 && Number.isFinite((+a[0])) && Number.isFinite((+a[1])) && Number.isFinite((+a[2])) && Number.isFinite((+a[3]))){
                         var s=a[0]*a[1]*a[2]*a[3]/1000000;
                         summ=summ+s;
