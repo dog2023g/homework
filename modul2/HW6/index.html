@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>CSS 3</title>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+        <link rel="stylesheet" href="css/index.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    </head>
+    <body>
+            <div class="container">
+                
+                <img class="second" src="img/2.jpg" alt="Второе изображение">
+                <img class="frist" src="img/1.jpg" alt="Первое изображение">
+            </div>
+            <script>
+                $('.frist').click(
+                    function (){
+                        $('.frist').css("transform", `translateY(${-100}%)`); 
+                    }
+                );
+                $('.second').click(
+                    function (){
+                        $('.frist').css("transform", `translateY(${0}px)`); 
+                    }
+                );
+            </script>
+    </body>
+</html>    
