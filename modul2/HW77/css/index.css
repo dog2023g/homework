@@ -1,0 +1,12 @@
+.but {
+  display: inline-block;
+  margin-left: 30px;
+  background-color: white;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out;
+}
+
+.but:hover {
+  background-color: green;
+}/*# sourceMappingURL=index.css.map */
