@@ -47,7 +47,7 @@
                     if (a.length==4 && Number.isFinite((+a[0])) && Number.isFinite((+a[1])) && Number.isFinite((+a[2])) && Number.isFinite((+a[3]))){
                     var s=a[0]*a[1]*a[2]*a[3]/1000000;
                     let aaa=document.createElement('div');
-                    $(aaa).append('<span>Доска № </span>'+(as())+'<span>. Размеры "</span>'+a[0]+' '+a[1]+' '+a[2]+' '+a[3]+'". '+'<span style="color:blue">Объем доски '+s+'</span>'+' м<sup>3</sup>  '+'<input type="button" value="Изменить" onclick="izm('+as()+')">  <input type="button" value="Удалить" onclick="delone('+as()+')">');
+                    $(aaa).append('<span>Доска № </span>'+(as())+'<span>. Размеры "</span>'+a[0]+' '+a[1]+' '+a[2]+' '+a[3]+'". '+'<span style="color:blue">Объем доски '+s+'</span>'+' м<sup>3</sup>  '+'<input type="button" value="Изменить" onclick="izm('+(as()-1)+')">  <input type="button" value="Удалить" onclick="delone('+(as()-1)+')">');
                     add__data[0].appendChild(aaa);
                     if (mass[0][0]==0){
                         mass=[]
