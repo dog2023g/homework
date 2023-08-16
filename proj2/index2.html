@@ -108,6 +108,7 @@
                 for (let i=0; i < mass.length; i++) {
                 summ+=mass[i][0];
             }   
+                summ=Math.round(summ * 1000)/1000;
                  aa.innerHTML='<hr> Общий Объем досок '+ summ+' м<sup>3</sup>  ';
                  add__data[0].appendChild(aa);
             }
@@ -115,6 +116,7 @@
                 var summ=0;
                 for (let i=0; i < mass.length; i++) {
                 summ += mass[i][0];}
+                summ=Math.round(summ * 1000)/1000;
                 return summ;
             }
             vvod();
