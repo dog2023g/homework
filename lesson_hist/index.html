@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>История Руси XI - XI века</title>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/index.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand bold" href="#">Интересные Викторины</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Главная</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Викторины
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">По истории</a></li>
+                  </li> </ul>
+
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                  <button class="btn btn-outline-success" type="submit">Поиск</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="m_cont">
+          <br>
+          <div class="block" id="quiz">
+            <div class="quiz-header" id="header">
+                <h2 class="title"> Загружаем вопрос...</h2>
+            </div>
+            <ul class="quiz-list" id="list"> 
+              <li>
+                <label>
+                  <input type="radio" class="answer" name="answer">
+                  <span>Ответ</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" class="answer" name="answer">
+                  <span>Ответ</span>
+                </label>
+              </li>
+            </ul>
+            <div class="bu"><button class="quiz-submit submit" id="submit">Ответить</button></div>
+          </div>
+        </div>
+        <nav class="navbar fixed-bottom bg-body-tertiary">
+          <div class="container-fluid">
+            <span class="navbar-text">
+              Изображение от <a href="https://ru.freepik.com/free-vector/flat-pattern-design-for-back-to-school-event_29401528.htm#page=6&query=%D1%84%D0%BE%D0%BD%20%D1%88%D0%BA%D0%BE%D0%BB%D0%B0&position=20&from_view=search&track=sph">Freepik</a>
+              <br> Викторины, 2023
+            </span>
+          </div>
+        </nav>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script>
+          const questions=[
+          {
+            question: 'Сколько яблок на столе?',
+            answers: ['j1','j2','j3'],
+            correct: 2,
+          },
+          {
+            question: 'Сколько бананов на столе?',
+            answers: ['1','2','3'],
+            correct: 1,
+          },
+          {
+            question: 'Сколько слив на столе?',
+            answers: ['1','2','3'],
+            correct: 2,
+          },
+          ];
+          const headContainer=document.querySelector('#header');
+          const liContainer=document.querySelector('#list');
+          const suButton=document.querySelector('#submit');
+
+  
+          let score=0;
+          let questionInd=0;
+          deliting();
+          Showquestion();
+          suButton.onclick=checkAnswer;
+
+
+          function deliting(){
+          headContainer.innerHTML='';
+          liContainer.innerHTML='';}
+          function Showquestion(){
+            let hT=`<h2 class="title">`+questions[questionInd]['question']+`</h2>`;
+            headContainer.innerHTML=hT;
+            let a=1;
+            for (item of questions[questionInd]['answers']){
+            let hA='<li><label><input type="radio" class="answer" name="answer" value="'+a+'"><span> '+item+'</span></label></li>';
+            liContainer.innerHTML+=hA;
+            a++;
+          }
+          }
+          function checkAnswer(){
+            let checked=liContainer.querySelector('input[type="radio"]:checked');
+            if (!checked){
+              return;
+          }
+          if (parseInt(checked.value)===questions[questionInd]['correct']){
+            score++;
+            liContainer.innerHTML+='<span style="color: rgb(6, 255, 80);font-weight: 700;">Правильно!</span>';
+          }
+          else{
+            liContainer.innerHTML+='<span style="color: red;font-weight: 500;">Неправильно.</span> Правильный ответ - '+questions[questionInd]['answers'][questions[questionInd]['correct']-1];
+          }
+          if (questions.length===questionInd+1){
+            suButton.innerHTML='Показать результаты викторины';
+          suButton.onclick=next;
+          }
+          else{
+          suButton.innerHTML='Следующий вопрос';
+          suButton.onclick=next;}
+        }
+        function next(){
+          if (questions.length===questionInd+1){
+            deliting();
+            showRes();
+          }
+          else{
+            questionInd++;
+            deliting();
+            Showquestion();
+            suButton.innerHTML='Ответить';
+            suButton.onclick=checkAnswer;
+          }
+        }
+        function showRes(){
+          let hT=`<h2 class="title">`+'Ваш результат '+score+' из '+questions.length+`</h2>`;
+            headContainer.innerHTML=hT;
+          if (score===questions.length){
+            headContainer.innerHTML+='Поздравляем 🎉!<br> Вы верно ответили на все вопросы!!!';
+          }
+          else if ((score*100)/questions.length >=60)
+          {
+            headContainer.innerHTML+='Неполохой результат 😊. <br>Вы верно ответили на '+parseInt((score*100)/questions.length)+'% вопросов!';
+          }
+          else{
+            headContainer.innerHTML+='Стоит постараться 😐. <br> Вы верно ответили на '+parseInt((score*100)/questions.length)+'% вопросов.';
+          }
+          suButton.innerHTML='Начать заново';
+          suButton.onclick=()=>{history.go()};
+        }
+        </script>
+    </body>
+</html>    
