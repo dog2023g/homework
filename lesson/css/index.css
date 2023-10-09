@@ -1,0 +1,15 @@
+.bold {
+  font-weight: 700;
+}
+
+body {
+  background-image: url(../img/fon.jpg);
+}
+
+h3 {
+  display: inline-block;
+  padding: 7px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px black;
+}/*# sourceMappingURL=index.css.map */
