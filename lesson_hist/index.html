@@ -11,21 +11,21 @@
     <body>
         <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand bold" href="https://dog2023g.github.io/homework/lesson/">Интересные Викторины</a>
+              <a class="navbar-brand bold" href="#">Интересные Викторины</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="https://dog2023g.github.io/homework/lesson/">Главная</a>
+                    <a class="nav-link active" aria-current="page" href="#">Главная</a>
                   </li>
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://dog2023g.github.io/homework/lesson/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Викторины
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="https://dog2023g.github.io/homework/lesson_hist/">По истории</a></li>
+                      <li><a class="dropdown-item" href="#">По истории</a></li>
                   </li> </ul>
 
                 </ul>
@@ -63,7 +63,6 @@
             <div class="bu"><button class="quiz-submit submit" id="submit">Ответить</button></div>
           </div>
         </div>
-        <br> <br> <br>  
         <nav class="navbar fixed-bottom bg-body-tertiary">
           <div class="container-fluid">
             <span class="navbar-text">
@@ -76,19 +75,79 @@
         <script>
           const questions=[
           {
-            question: 'Сколько яблок на столе?',
-            answers: ['j1','j2','j3'],
-            correct: 2,
+            question: 'Какую письменность создали Кирилл и Мефодий?',
+            answers: ['Кириллица','Латиница','Глаголица','Арабица'],
+            correct: 3,
           },
           {
-            question: 'Сколько бананов на столе?',
-            answers: ['1','2','3'],
+            question: ' В каком году было призвание варягов (Рюрика)?',
+            answers: ['862','882','863','879'],
             correct: 1,
           },
           {
-            question: 'Сколько слив на столе?',
-            answers: ['1','2','3'],
+            question: 'В каком городе сначала правил Рюрик на Руси?',
+            answers: ['В Новгороде','В Киеве','В Ладоге','В Смоленске'],
+            correct: 3,
+          },
+          {
+            question: 'В каком году было образование Киевской Руси?',
+            answers: ['862','882','988','879'],
             correct: 2,
+          },
+          {
+            question: 'Осенью 912 года, как сообщает Повесть временных лет, князь Олег погиб от',
+            answers: ['укуса коня','своего меча','укуса змеи'],
+            correct: 3,
+          },
+          {
+            question: 'Годы правления князя Игоря?',
+            answers: ['879-912','912-945','945-960'],
+            correct: 2,
+          },
+          {
+            question: 'С кем был подписан договор в 944 году?',
+            answers: ['С Византийской империей','С печенегами','С Фрисландией','С герцогством Нормандским'],
+            correct: 1,
+          },
+          {
+            question: 'Какие важные реформы были введены при княгине Ольге?',
+            answers: ['Полюдье','Уроки и погосты','Русская правда'],
+            correct: 2,
+          },
+          {
+            question: 'В каком году было крещение Руси?',
+            answers: ['960','972','988','1001'],
+            correct: 3,
+          },
+          {
+            question: ' Происхождение Русской Правды связано с князем?',
+            answers: ['Игорем','Владимиром','Иваном I', 'Ярославом'],
+            correct: 4,
+          },
+          {
+            question: 'В каком году был съезд князей в Любече?',
+            answers: ['1073','1093','1097','1132'],
+            correct: 3,
+          },
+          {
+            question: 'В каком году была смерть Мстислава Владимировича и начало распада Киевской Руси?',
+            answers: ['1097','1118','1132','1136'],
+            correct: 3,
+          },
+          {
+            question: 'Какая республика была утверждена в 1136 году?',
+            answers: ['Новгородская Республика','Республика Карелия','Карачаево-Черкесская Республика','Республика Мордовия'],
+            correct: 1,
+          },
+          {
+            question: 'В каком году было первое летописное упоминание Москвы?',
+            answers: ['988','1132','1136','1147'],
+            correct: 4,
+          },
+          {
+            question: ' Сколько правящих династий было в России?',
+            answers: ['Ни одной','одна','две','три'],
+            correct: 3,
           },
           ];
           const headContainer=document.querySelector('#header');
@@ -116,16 +175,36 @@
             a++;
           }
           }
+
           function checkAnswer(){
-            let checked=liContainer.querySelector('input[type="radio"]:checked');
+            const checked=liContainer.querySelector('input[type="radio"]:checked');
+            var b=parseInt(checked.value);
             if (!checked){
               return;
           }
           if (parseInt(checked.value)===questions[questionInd]['correct']){
             score++;
-            liContainer.innerHTML+='<span style="color: rgb(6, 255, 80);font-weight: 700;">Правильно!</span>';
+            deliting();
+            let hT=`<h2 class="title">`+questions[questionInd]['question']+`</h2>`;
+            headContainer.innerHTML=hT;
+            var a=1;
+            for (item of questions[questionInd]['answers']){
+            let hA='<li><label><input type="radio" class="answer" name="answer" '+fa(b,a)+' value="'+a+'"><span> '+item+'</span></label></li>';
+            liContainer.innerHTML+=hA;
+            a++;
+          }
+            liContainer.innerHTML+='<span style="color: rgb(6, 255, 80);font-weight: 700;">Правильно! </span>'+questions[questionInd]['answers'][questions[questionInd]['correct']-1];
           }
           else{
+            deliting();
+            let hT=`<h2 class="title">`+questions[questionInd]['question']+`</h2>`;
+            headContainer.innerHTML=hT;
+            var a=1;
+            for (item of questions[questionInd]['answers']){
+            let hA='<li><label><input type="radio" class="answer" name="answer" '+fa(b,a)+' value="'+a+'"><span> '+item+'</span></label></li>';
+            liContainer.innerHTML+=hA;
+            a++;
+          }
             liContainer.innerHTML+='<span style="color: red;font-weight: 500;">Неправильно.</span> Правильный ответ - '+questions[questionInd]['answers'][questions[questionInd]['correct']-1];
           }
           if (questions.length===questionInd+1){
@@ -136,6 +215,14 @@
           suButton.innerHTML='Следующий вопрос';
           suButton.onclick=next;}
         }
+        function fa(b,a){
+            if (b===a){
+              return `checked="checked" disabled="disabled"`;
+            }
+            else{
+              return `disabled="disabled"`;
+            }
+          }
         function next(){
           if (questions.length===questionInd+1){
             deliting();
