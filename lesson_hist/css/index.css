@@ -70,11 +70,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bold {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 body {
   background-image: url(../img/fon.jpg);
+  font-size: 16px;
 }
 
 .block {
@@ -90,6 +91,11 @@ body {
   width: 100%;
 }
 
+@media (max-width: 550px) {
+  body {
+    font-size: 22px;
+  }
+}
 @media (min-width: 550px) {
   .m_cont {
     max-width: 60%;
