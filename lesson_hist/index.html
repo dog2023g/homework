@@ -363,6 +363,10 @@
           if (score===questions.length){
             headContainer.innerHTML+='Поздравляем 🎉!<br> Вы верно ответили на все вопросы!!!';
           }
+          else if ((score*100)/questions.length >=80)
+          {
+            headContainer.innerHTML+='Хороший результат 😊. <br>Вы верно ответили на '+parseInt((score*100)/questions.length)+'% вопросов!';
+          }
           else if ((score*100)/questions.length >=60)
           {
             headContainer.innerHTML+='Неполохой результат 😊. <br>Вы верно ответили на '+parseInt((score*100)/questions.length)+'% вопросов!';
