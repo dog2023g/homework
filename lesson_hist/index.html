@@ -77,7 +77,7 @@
         </nav>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
         <script>
-          const questions=[
+          const questions_cc=[
           {
             question: ' В каком году было призвание варягов (Рюрика)?',
             answers: ['862','882','863','879'],
@@ -154,6 +154,121 @@
             correct: 3,
           },
           ];
+            const questions_a=[
+          {
+            question: ' В каком году было призвание варягов (Рюрика)?',
+            answers: ['862','882','863','879'],
+            correct: 1,
+          },
+          {
+            question: 'В каком городе сначала правил Рюрик на Руси?',
+            answers: ['В Новгороде','В Киеве','В Ладоге','В Смоленске'],
+            correct: 3,
+          },
+          {
+            question: 'В каком году было образование Киевской Руси?',
+            answers: ['862','882','988','879'],
+            correct: 2,
+          },
+          {
+            question: 'Осенью 912 года, как сообщает Повесть временных лет, князь Олег погиб от',
+            answers: ['укуса коня','своего меча','укуса змеи'],
+            correct: 3,
+          },
+          {
+            question: 'Годы правления князя Игоря?',
+            answers: ['879-912','912-945','945-960'],
+            correct: 2,
+          },
+          {
+            question: 'С кем был подписан договор в 944 году?',
+            answers: ['С Византийской империей','С печенегами','С Фрисландией','С герцогством Нормандским'],
+            correct: 1,
+          },
+          {
+            question: 'Какие важные реформы были введены при княгине Ольге?',
+            answers: ['Полюдье','Уроки и погосты','Русская правда'],
+            correct: 2,
+          },
+        {
+            question: 'Кто из правителей Руси первым принял христианство?',
+            answers: ['князь Рюрик','князь Игорь', 'княгиня Ольга', 'князь Владимир'],
+            correct: 3,
+          },
+          {
+            question: 'В каком году было крещение Руси?',
+            answers: ['960','972','988','1001'],
+            correct: 3,
+          },
+          {
+            question: ' Происхождение Русской Правды связано с князем?',
+            answers: ['Игорем','Владимиром','Иваном I', 'Ярославом'],
+            correct: 4,
+          },
+          {
+            question: 'В каком году был съезд князей в Любече?',
+            answers: ['1073','1093','1097','1132'],
+            correct: 3,
+          },
+          {
+            question: 'В каком году была смерть Мстислава Владимировича и начало распада Киевской Руси?',
+            answers: ['1097','1118','1132','1136'],
+            correct: 3,
+          },
+          {
+            question: 'Какая республика была утверждена в 1136 году?',
+            answers: ['Новгородская Республика','Республика Карелия','Карачаево-Черкесская Республика','Республика Мордовия'],
+            correct: 1,
+          },
+          {
+            question: 'В каком году было первое летописное упоминание Москвы?',
+            answers: ['988','1132','1136','1147'],
+            correct: 4,
+          },
+          {
+            question: ' Сколько правящих династий было в России?',
+            answers: ['Ни одной','одна','две','три'],
+            correct: 3,
+          },
+          ];
+            let questions_b=[];
+          nec=questions_a.length;
+          questions_b=(questions_a);
+          for (let ii=0; ii<nec; ii++){
+            per=questions_a[ii]['answers'].length;
+            questions_b[ii]['correct']=randintv(questions_a[ii]['answers'].length)+1;
+            let mm=[questions_b[ii]['correct']];
+            per=questions_cc[ii]['answers'][questions_cc[ii]['correct']-1];
+            questions_b[ii]['answers'][questions_b[ii]['correct']-1]=per;
+            let iii=0;
+             while (iii<questions_a[ii]['answers'].length){
+              if (iii+1==questions_cc[ii]['correct']){
+                iii++;
+                continue;
+              }
+              let kk=randintv(questions_a[ii]['answers'].length)+1;
+              if (mm.includes(kk)){
+                kk=0;
+              }
+              else{
+                mm.push(kk);
+                questions_b[ii]['answers'][kk-1]=questions_cc[ii]['answers'][iii];
+                iii++;
+              }
+              
+            }
+          }
+          for (let ai=0; ai<questions_b.length*10;ai++){
+            let k=randintv(questions_b.length);
+            let b=randintv(questions_b.length);
+            k=0;
+            b=11;
+            let bb;  
+            bb=questions_b[k];
+            questions_b[k]=questions_b[b];
+            questions_b[b]=bb;
+          }
+          const questions=questions_b;
           const headContainer=document.querySelector('#header');
           const liContainer=document.querySelector('#list');
           const suButton=document.querySelector('#submit');
