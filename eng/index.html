@@ -1,1 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Сборник учебных игр</title>
+  <style>
+    :root{--bg:#f7f7fb;--card:#fff;--accent:#0366d6}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111}
+    .wrap{max-width:980px; margin:28px auto; padding:20px}
+    header{display:flex;align-items:center;gap:16px}
+    h1{margin:0;font-size:1.4rem}
+    p.lead{margin:6px 0 18px;color:#444}
+    .controls{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    .search{padding:8px 10px;border:1px solid #ddd;border-radius:8px;min-width:220px}
+    .count{color:#666;font-size:0.95rem}
+    .games{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:12px}
+    .card{background:var(--card);border-radius:10px;padding:12px;box-shadow:0 2px 8px rgba(16,24,40,0.06);display:flex;flex-direction:column;gap:10px}
+    .title{font-weight:600;font-size:1rem;line-height:1.2}
+    .url{font-size:0.85rem;color:#0366d6;word-break:break-all}
+    .actions{margin-top:auto;display:flex;gap:8px}
+    .btn{border:0;padding:8px 10px;border-radius:8px;cursor:pointer;background:var(--accent);color:#fff;font-weight:600}
+    .btn.secondary{background:#e6eefc;color:#0366d6}
+    .empty{padding:20px;text-align:center;color:#666}
+    footer{margin-top:18px;color:#666;font-size:0.9rem}
+    @media (max-width:420px){.search{min-width:140px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Учебные игры</h1>
+        <p class="lead">Нажмите на «Открыть», чтобы запустить игру в новой вкладке.</p>
+      </div>
+      <div style="margin-left:auto" class="count" id="count">0 игр</div>
+    </header>
+
+    <div class="controls">
+      <input id="search" class="search" placeholder="Поиск по названию..." />
+      <button id="reset" class="btn secondary">Сброс</button>
+    </div>
+
+    <div id="games" class="games"></div>
+
+    <div id="empty" class="empty" style="display:none">Список пуст или ничего не найдено.</div>
+
+    <footer>Фронтенд только (index.html). Для добавления/редактирования списка — правьте массив <code>games</code> в скрипте.
+    Данный сайт создан только в учебных целях.</footer>
+  </div>
+
+  <script>
+    // Список игр: {name, url}
+    const games = [
+      { name: 'Задание на повторение цифр', url: 'https://wordwall.net/play/99257/445/798' },
+    ];
+
+    const $games = document.getElementById('games');
+    const $count = document.getElementById('count');
+    const $empty = document.getElementById('empty');
+    const $search = document.getElementById('search');
+    const $reset = document.getElementById('reset');
+
+    function render(list){
+      $games.innerHTML = '';
+      if(!list.length){
+        $empty.style.display = 'block';
+        $count.textContent = '0 игр';
+        return;
+      }
+      $empty.style.display = 'none';
+      $count.textContent = list.length + (list.length === 1 ? ' игра' : ' игр');
+
+      list.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = item.name;
+
+        const url = document.createElement('div');
+        url.className = 'url';
+        url.textContent = item.url;
+
+        const actions = document.createElement('div');
+        actions.className = 'actions';
+
+        const openBtn = document.createElement('button');
+        openBtn.className = 'btn';
+        openBtn.textContent = 'Открыть';
+        openBtn.addEventListener('click', () => window.open(item.url, '_blank', 'noopener'));
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'btn secondary';
+        copyBtn.textContent = 'Копировать ссылку';
+        copyBtn.addEventListener('click', async () => {
+          try{
+            await navigator.clipboard.writeText(item.url);
+            copyBtn.textContent = 'Скопировано!';
+            setTimeout(()=> copyBtn.textContent = 'Копировать ссылку', 1200);
+          }catch(e){
+            alert('Не удалось скопировать ссылку');
+          }
+        });
+
+        actions.append(openBtn, copyBtn);
+        card.append(title, url, actions);
+        $games.append(card);
+      });
+    }
+
+    // Поиск
+    $search.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      const filtered = games.filter(g => g.name.toLowerCase().includes(q));
+      render(filtered);
+    });
+
+    // Сброс поиска
+    $reset.addEventListener('click', () => { $search.value = ''; render(games); });
+
+    // Инициализация
+    render(games);
+  </script>
+</body>
+</html>
 
